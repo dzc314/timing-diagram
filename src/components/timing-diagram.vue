@@ -1,14 +1,19 @@
 <template>
-  <div class="timing-diagram">
+  <div class="timing-diagram" @click="activeEventIndex = null">
     <div class="timing-items">
       <div class="timing-item" v-for="(item, index) in columns" :key="index">
         <strong>{{ item }}</strong>
       </div>
     </div>
     <div class="timing-events">
-      <div class="timing-event" v-for="(item, index) in events" :key="index">
+      <div
+        class="timing-event"
+        v-for="(item, index) in events"
+        :key="index"
+        :class="{ active: index === activeEventIndex }"
+      >
         <p
-          @click="eventHandler(item)"
+          @click.stop="eventHandler(item, index)"
           class="timing-event-line"
           :class="calcDirection(item)"
           :style="calcStyle(item)"
@@ -32,14 +37,20 @@ export default {
       default: () => [],
     },
   },
+  data() {
+    return {
+      activeEventIndex: null,
+    }
+  },
   computed: {
     size() {
       return this.columns.length - 1
     },
   },
   methods: {
-    eventHandler(event) {
+    eventHandler(event, index) {
       // console.log(event)
+      this.activeEventIndex = index
       this.$emit('eventClick', event)
     },
     calcStyle(row) {
