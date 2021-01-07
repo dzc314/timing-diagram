@@ -30,13 +30,7 @@ import '@dzc314/timing-diagram'
 </template>
 
 <script>
-import TimingDiagram from '@/components/timing-diagram.vue'
-
 export default {
-  name: 'App',
-  components: {
-    TimingDiagram,
-  },
   data() {
     return {
       columns: ['A', 'B', 'C', 'D'], // columns定义的列名须与evens数组单个对象中的from/to匹配
