@@ -12,6 +12,9 @@ npm i @dzc314/timing-diagram -S
 import '@dzc314/timing-diagram'
 ```
 
+### 预览
+![avatar](./public/img/img-timing-diagram.png)
+
 ### 使用
 ```
 <template>
