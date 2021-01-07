@@ -58,41 +58,6 @@ export default {
           to: 'C',
           text: 'Hi C',
         },
-        {
-          from: 'A',
-          to: 'B',
-          text: 'Hello B',
-        },
-        {
-          from: 'B',
-          to: 'D',
-          text: 'Hello D',
-        },
-        {
-          from: 'B',
-          to: 'A',
-          text: 'Hello A',
-        },
-        {
-          from: 'B',
-          to: 'C',
-          text: 'Hi C',
-        },
-        {
-          from: 'C',
-          to: 'B',
-          text: 'Hi B',
-        },
-        {
-          from: 'C',
-          to: 'A',
-          text: 'Hi A',
-        },
-        {
-          from: 'A',
-          to: 'C',
-          text: 'Hi C',
-        },
       ],
     }
   },
