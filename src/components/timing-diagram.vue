@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="timing-events" ref="eventsView">
-      <div ref="eventsList" :style="{'margin-right': eventsListMarginRight}">
+      <div ref="eventsList" :style="{ 'margin-right': eventsListMarginRight }">
         <div
           class="timing-event"
           v-for="(item, index) in events"
@@ -53,19 +53,20 @@ export default {
   watch: {
     events: {
       handler: function () {
-        this.calcEventsListStyle()
+        this.$nextTick(this.calcEventsListStyle)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
   mounted() {
-    this.calcEventsListStyle()
+    // this.calcEventsListStyle()
+    this.$nextTick(this.calcEventsListStyle)
   },
   methods: {
     calcEventsListStyle() {
       const eventsViewHeight = this.$refs.eventsView.offsetHeight
       const eventsListHeight = this.$refs.eventsList.offsetHeight
-      console.log(eventsViewHeight, eventsListHeight);
+      console.log(eventsViewHeight, eventsListHeight)
       this.eventsListMarginRight =
         eventsViewHeight < eventsListHeight ? '-10px' : 0
     },
@@ -137,9 +138,10 @@ $event-line-color: #666;
     overflow-y: auto;
     box-sizing: border-box;
     .timing-event {
-      margin: 10px 0;
-      padding: 0 50px;
+      // margin: 10px 0;
+      padding: 10px 50px;
       > .timing-event-line {
+        margin: 0;
         position: relative;
         border-bottom: 1px solid $event-line-color;
         cursor: pointer;

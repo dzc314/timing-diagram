@@ -1,6 +1,6 @@
 {
   "name": "timing-diagram",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
