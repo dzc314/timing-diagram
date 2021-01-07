@@ -1,12 +1,30 @@
 {
   "name": "timing-diagram",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "package": "vue-cli-service build --target lib --name timing-diagram ./src/components/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzc314/timing-diagram"
+  },
+  "main": "./dist/timing-diagram.common.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "keywords": [
+    "时序图",
+    "timing",
+    "sequence"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "node-sass": "^5.0.0",
