@@ -5,21 +5,23 @@
         <strong>{{ item }}</strong>
       </div>
     </div>
-    <div class="timing-events">
-      <div
-        class="timing-event"
-        v-for="(item, index) in events"
-        :key="index"
-        :class="{ active: index === activeEventIndex }"
-      >
-        <p
-          @click.stop="eventHandler(item, index)"
-          class="timing-event-line"
-          :class="calcDirection(item)"
-          :style="calcStyle(item)"
+    <div class="timing-events" ref="eventsView">
+      <div ref="eventsList" :style="{'margin-right': eventsListMarginRight}">
+        <div
+          class="timing-event"
+          v-for="(item, index) in events"
+          :key="index"
+          :class="{ active: index === activeEventIndex }"
         >
-          {{ item.text }}
-        </p>
+          <p
+            @click.stop="eventHandler(item, index)"
+            class="timing-event-line"
+            :class="calcDirection(item)"
+            :style="calcStyle(item)"
+          >
+            {{ item.text }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -40,6 +42,7 @@ export default {
   data() {
     return {
       activeEventIndex: null,
+      eventsListMarginRight: 0,
     }
   },
   computed: {
@@ -47,7 +50,25 @@ export default {
       return this.columns.length - 1
     },
   },
+  watch: {
+    events: {
+      handler: function () {
+        this.calcEventsListStyle()
+      },
+      deep: true
+    }
+  },
+  mounted() {
+    this.calcEventsListStyle()
+  },
   methods: {
+    calcEventsListStyle() {
+      const eventsViewHeight = this.$refs.eventsView.offsetHeight
+      const eventsListHeight = this.$refs.eventsList.offsetHeight
+      console.log(eventsViewHeight, eventsListHeight);
+      this.eventsListMarginRight =
+        eventsViewHeight < eventsListHeight ? '-10px' : 0
+    },
     eventHandler(event, index) {
       // console.log(event)
       this.activeEventIndex = index
@@ -112,9 +133,10 @@ $event-line-color: #666;
     left: 0;
     width: 100%;
     height: calc(100% - 100px);
+    overflow-x: hidden;
     overflow-y: auto;
     box-sizing: border-box;
-    > .timing-event {
+    .timing-event {
       margin: 10px 0;
       padding: 0 50px;
       > .timing-event-line {
@@ -141,6 +163,25 @@ $event-line-color: #666;
         }
       }
     }
+  }
+  // 滚动条
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(197, 206, 224, 0.5);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 120, 15, 0.8);
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
   }
 }
 </style>
