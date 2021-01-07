@@ -66,7 +66,7 @@ export default {
     calcEventsListStyle() {
       const eventsViewHeight = this.$refs.eventsView.offsetHeight
       const eventsListHeight = this.$refs.eventsList.offsetHeight
-      console.log(eventsViewHeight, eventsListHeight)
+      // console.log(eventsViewHeight, eventsListHeight)
       this.eventsListMarginRight =
         eventsViewHeight < eventsListHeight ? '-10px' : 0
     },
